@@ -32,12 +32,13 @@ const PostItem = ({
   const allCategories = state.source.category;
 
   const containerWidth = state.router.link === "/" ? "40%" : "100%";
-  
+
   /**
    * The item's categories is an array of each category id. So, we'll look up
    * the details of each category in allCategories.
    */
-  const categories = item.categories && item.categories.map((catId) => allCategories[catId]);
+  const categories =
+    item.categories && item.categories.map((catId) => allCategories[catId]);
 
   // Get all tags
   const allTags = state.source.tag;
@@ -52,22 +53,20 @@ const PostItem = ({
   const { Component: Html2React } = libraries.html2react;
   return (
     <Post
-    css={css
-      `
-      @media (min-width: 700px) {
-        width: 40% !important;
-      }
-       background-color: #fff;
-       margin-top: 15rem;
-       padding-top:4rem;   
-       -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-       border-radius: 5px;
-       -webkit-box-shadow: 5px 5px 15px 5px #000000; 
-       box-shadow: 5px 5px 15px 5px #000000;
+      css={css`
+        @media (min-width: 700px) {
+          width: 47% !important;
+        }
+        background-color: #fff;
+        margin-top: 5rem;
+        padding-top: 4rem;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-box-shadow: 5px 5px 15px 5px #000000;
+        box-shadow: 5px 5px 15px 5px #000000;
       `}
     >
-
       <PostHeader>
         <SectionContainer>
           {/* If the post has categories, render the categories */}
@@ -107,12 +106,11 @@ const PostItem = ({
         </PostInner>
       )}
       <div className="btn">
-      <PostLink link={item.link}>
-            <button>MEHR ERFAHREN</button>
-          </PostLink>
-      </div>    
+        <PostLink link={item.link}>
+          <button>MEHR ERFAHREN</button>
+        </PostLink>
+      </div>
     </Post>
-
   );
 };
 
@@ -121,45 +119,42 @@ export default connect(PostItem);
 
 // All styles :)
 
-
 export const Post = styled.article`
-background-color: #fff;
-margin-top: 15rem;
-padding-top:4rem;   
--webkit-border-radius: 5px;
--moz-border-radius: 5px;
-border-radius: 5px;
--webkit-box-shadow: 5px 5px 15px 5px #000000; 
-box-shadow: 5px 5px 15px 5px #000000;
+  background-color: #fff;
+  margin-top: 5rem;
+  padding-top: 4rem;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000;
 
-
-button {
-  -webkit-transition: background-color ease 0.25s;
+  button {
+    -webkit-transition: background-color ease 0.25s;
     transition: background-color ease 0.25s;
     padding-left: 5px;
     padding-right: 5px;
     padding: 10px;
     border: 2px solid;
     border-color: #eca419;
-    font-family: Kelson,system-ui,Helvetica,sans-serif;
+    font-family: Kelson, system-ui, Helvetica, sans-serif;
     text-transform: uppercase;
     font-weight: 500;
     display: inline-block;
     color: #000;
     margin-bottom: 30px;
     background: transparent;
-}
-button:hover {
+  }
+  button:hover {
     background-color: #eca419;
     color: #fff;
-}
+  }
 
-.btn {
-  display: flex;
-  justify-content: center;
-}
+  .btn {
+    display: flex;
+    justify-content: center;
+  }
 `;
-
 
 export const PostHeader = styled.header`
   text-align: center;
@@ -182,11 +177,14 @@ const maxWidths = {
 const getMaxWidth = (props) => maxWidths[props.size] || maxWidths["medium"];
 
 export const SectionContainer = styled.div`
-  margin-left: auto;
+  margin-left: 4rem;
   margin-right: 4rem;
   width: calc(100% - 4rem);
   @media (min-width: 700px) {
-    width: calc(100% - 8rem);
+   /*margin-left: 10rem;
+   margin-right: 5rem; */
+    /* width: calc(100% - 20rem); */
+    padding-right: 4rem;
   }
 `;
 
@@ -227,7 +225,7 @@ export const PostCaption = styled(SectionContainer)`
   @media (min-width: 1220px) {
     font-size: 2rem;
     letter-spacing: -0.03125em;
-    line-height: 1.0;
+    line-height: 1;
   }
 `;
 
@@ -244,6 +242,8 @@ export const PostInner = styled(SectionContainer)`
   padding-top: 5rem;
   @media (min-width: 700px) {
     padding-top: 5rem;
+    padding-bottom: 5rem;
+    min-height: 450px;
   }
 `;
 
@@ -258,8 +258,8 @@ export const EntryContent = styled.div`
 
   > *:first-of-type {
     margin-top: 0;
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
   }
 
   figure {

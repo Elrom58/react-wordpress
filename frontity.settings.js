@@ -14,10 +14,10 @@ const settings = {
       state: {
         theme: {
           menu: [
-            ["Home", "/"],
-            //["Nature", "category/nature/"],
+           /* ["Home", "/"], */
             ["Landschaft", "/category/landschaft/"],
             ["Street", "/category/street/"],
+            ["Stilleben", "/category/stilleben/"],
             ["Contact Us", "/contact-us/"],
             ["About Us", "/about-us/"],
           ],
@@ -35,6 +35,9 @@ const settings = {
           //"url": "https://test.frontity.org"
           "url": "http://wordpress.dd.local"
         },
+        "params": {
+          "per_page": 6
+        }
       },
     },
     "@frontity/tiny-router",

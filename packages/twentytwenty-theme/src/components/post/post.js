@@ -1,4 +1,4 @@
-import { styled, connect } from "frontity";
+import { styled, connect, css } from "frontity";
 import { useEffect } from "react";
 import FeaturedMedia from "./featured-media";
 import {
@@ -13,6 +13,7 @@ import {
 import PostCategories from "./post-categories";
 import PostMeta from "./post-meta";
 import PostTags from "./post-tags";
+import { Map, Marker } from "pigeon-maps";
 
 /**
  * The Post component that the TwentyTwenty theme uses for rendering any kind of
@@ -55,6 +56,9 @@ const Post = ({ state, actions, libraries }) => {
   // Get all tags
   const allTags = state.source.tag;
 
+  const isRoot = state.router.link === "/" ? "600px" : "1200px";
+  const isAboutUs = state.router.link === "/about-us/" ? true : false;
+
   /**
    * The item's categories is an array of each tag id. So, we'll look up the
    * details of each tag in allTags.
@@ -89,7 +93,6 @@ const Post = ({ state, actions, libraries }) => {
             />
           )}
           {/* The post's metadata like author, publish date, and comments */}
-          
         </SectionContainer>
       </Header>
 
@@ -120,6 +123,28 @@ const Post = ({ state, actions, libraries }) => {
           {post.tags && <PostTags tags={tags} />}
         </PostInner>
       )}
+
+      {isAboutUs && (
+        <div
+          css={css`
+            display: flex;
+            justify-content: center;
+            margin: 15rem 0;
+            padding-top: 4rem;
+          `}
+        >
+          <Map
+            height={500}
+            defaultCenter={[52.028458387206676, 8.900880007418227]}
+            defaultZoom={16}
+          >
+            <Marker
+              width={30}
+              anchor={[52.028458387206676, 8.900880007418227]}
+            />
+          </Map>
+        </div>
+      )}
     </PostArticle>
   ) : null;
 };
@@ -137,7 +162,7 @@ const Header = styled(PostHeader)`
 
 const PostArticle = styled(_Post)`
   padding-top: 0 !important;
-  
+
   input[type="text"],
   input[type="email"],
   input[type="url"],
@@ -157,11 +182,11 @@ const PostArticle = styled(_Post)`
     background-clip: padding-box;
     border: 1px solif #ced4da;
     border-radius: 4px;
-    transition: border-color .15 ease-in-out, box-shadow .15s ease-in-out;
+    transition: border-color 0.15 ease-in-out, box-shadow 0.15s ease-in-out;
     margin: 8px 0 4px 0;
   }
 
-  input[type="submit"]{
+  input[type="submit"] {
     -webkit-transition: background-color ease 0.25s;
     transition: background-color ease 0.25s;
     padding-left: 5px;
@@ -169,7 +194,7 @@ const PostArticle = styled(_Post)`
     padding: 10px;
     border: 2px solid;
     border-color: #eca419;
-    font-family: Kelson,system-ui,Helvetica,sans-serif;
+    font-family: Kelson, system-ui, Helvetica, sans-serif;
     text-transform: uppercase;
     font-weight: 500;
     display: inline-block;
@@ -177,16 +202,15 @@ const PostArticle = styled(_Post)`
     margin-bottom: 30px;
     background: transparent;
   }
-  
+
   input[type="submit"]:hover {
     background-color: #eca419;
     color: #fff;
-  
-  #wpcf7-f110-o2{
-    margin-left: 200px !important;
+
+    #wpcf7-f110-o2 {
+      margin-left: 200px !important;
+    }
   }
-    
-}
 `;
 
 const FeaturedImage = styled(FeaturedMedia)`

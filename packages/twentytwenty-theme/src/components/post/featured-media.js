@@ -1,4 +1,4 @@
-import { connect, styled } from "frontity";
+import { connect, styled, css } from "frontity";
 import Img from "@frontity/components/image";
 import SectionContainer from "../styles/section-container";
 
@@ -13,6 +13,8 @@ import SectionContainer from "../styles/section-container";
  */
 const FeaturedMedia = ({ state, id, className }) => {
   const media = state.source.attachment[id];
+
+  const imgHeight = state.router.link === "/" ? "600px" : "1200px";
 
   if (!media) return null;
 
@@ -33,6 +35,11 @@ const FeaturedMedia = ({ state, id, className }) => {
     <Figure className={className}>
       <SectionContainer size="medium">
         <Image
+
+          css={css`
+          max-height: ${imgHeight} !important;
+          `}
+
           alt={media.title.rendered}
           src={media.source_url}
           srcSet={srcset}
@@ -57,7 +64,6 @@ const Image = styled(Img)`
   margin: 0 auto;
   max-width: 100%;
   display: block;
-  height: auto;
-  max-height: 640px;
-  object-fit: cover;
+  min-height: 400px !important;
+  object-fit: cover !important;
 `;

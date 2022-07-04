@@ -28,7 +28,7 @@ const SearchResults = ({ state }) => {
             </Text>
           ) : (
             <Text>
-              Es wurden {total} {total === 1 ? "result" : "results"} für die Suche gefunddne.
+              Es wurde(n) {total} {total === 1 ? "Ergebnis" : "Ergebnisse"} für die Suche gefunden.
             </Text>
           )}
         </IntroText>
